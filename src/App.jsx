@@ -3,12 +3,18 @@ import Hero from './components/Hero'
 import Navigation from './components/Navigation'
 import InvestorsTab from './components/InvestorsTab'
 import ParallaxParticles from './components/ParallaxParticles'
+import ScrollMotion from './components/ScrollMotion'
 
 function App() {
   const [active, setActive] = useState('home')
 
+  const openInvestors = () => setActive('investors')
+
   return (
     <div className="relative min-h-screen overflow-x-hidden text-white">
+      {/* Scroll-linked motion accents */}
+      <ScrollMotion />
+
       {/* Lux gradient background (dark‑teal → cobalt/blue) */}
       <div className="fixed inset-0 -z-20 bg-gradient-to-br from-teal-900 via-cyan-900 to-blue-950" />
 
@@ -27,7 +33,7 @@ function App() {
       {active === 'home' && (
         <>
           <Hero />
-          <main className="relative z-10 mx-auto max-w-6xl px-4 md:px-6 py-10 md:py-14">
+          <main className="relative z-10 mx-auto max-w-6xl px-4 md:px-6 py-10 md:py-14 pb-28">
             <section className="grid md:grid-cols-3 gap-5">
               {[
                 {
@@ -45,7 +51,7 @@ function App() {
               ].map((c, i) => (
                 <div
                   key={i}
-                  className="glass neon-edge hover-neon p-6"
+                  className="glass neon-edge hover-neon p-6 text-center"
                 >
                   <h3 className="text-lg font-semibold mb-2 drop-shadow-sm neon-text">{c.title}</h3>
                   <p className="text-white/85 leading-relaxed">{c.desc}</p>
@@ -57,12 +63,14 @@ function App() {
       )}
 
       {active === 'investors' && (
-        <InvestorsTab />
+        <div className="pb-28">
+          <InvestorsTab />
+        </div>
       )}
 
       {active !== 'home' && active !== 'investors' && (
-        <section className="relative mx-auto max-w-6xl px-4 md:px-6 py-16">
-          <div className="glass neon-edge p-8">
+        <section className="relative mx-auto max-w-6xl px-4 md:px-6 py-16 pb-28">
+          <div className="glass neon-edge p-8 text-center">
             <h2 className="text-2xl font-bold mb-2 capitalize drop-shadow neon-text">{active}</h2>
             <p className="text-white/85">This section is coming next in our build. Tell me what you want prioritized and I’ll wire it up.</p>
           </div>
@@ -72,6 +80,21 @@ function App() {
       <footer className="relative z-10 mx-auto max-w-6xl px-4 md:px-6 py-10 text-center text-white/70">
         <p>Glassmorphic luxury • Teal → Cobalt gradient • Parallax particle ambiance • Sound‑wave accents</p>
       </footer>
+
+      {/* Bottom investor bar */}
+      <div className="fixed inset-x-0 bottom-4 z-40 flex justify-center px-4">
+        <div className="glass neon-edge w-full max-w-4xl rounded-2xl px-4 md:px-6 py-3 flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-4">
+          <p className="text-center md:text-left text-white/90 flex-1">
+            For those looking to invest in AURCA SOUND — click here.
+          </p>
+          <button
+            onClick={openInvestors}
+            className="tap-pulse hover-neon px-5 py-2 rounded-xl bg-cyan-500/20 border border-cyan-200/40 text-white shadow-[0_0_20px_rgba(34,211,238,0.35)]"
+          >
+            Open Investors
+          </button>
+        </div>
+      </div>
 
       <style>{`
         @keyframes pulse { 0%,100%{opacity:.7; transform: scale(1)} 50%{opacity:1; transform: scale(1.05)} }
