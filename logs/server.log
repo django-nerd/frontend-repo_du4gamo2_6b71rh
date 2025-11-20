@@ -3,7 +3,14 @@
 > vite
 
 
-  VITE v5.4.20  ready in 209 ms
+  VITE v5.4.20  ready in 201 ms
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: http://172.20.13.174:3000/
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+4  |  
+5  |  /* Luxury typography */
+6  |  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;600;700&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+7  |  
+8  |  @layer base {

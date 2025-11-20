@@ -1,57 +1,41 @@
+import SoundWave from './SoundWave'
+import MagneticButton from './MagneticButton'
+
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden">
-      {/* Gradient canvas only (no dark theme, no card) */}
+    <section className="relative w-full min-h-[72vh] flex items-center justify-center overflow-hidden">
+      {/* Gradient depth overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-teal-900/20 to-blue-900/40" />
 
-      {/* Particle field */}
+      {/* Soft edge lighting */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        {/* drifting dots */}
-        {Array.from({ length: 60 }).map((_, i) => (
-          <span
-            key={i}
-            className="absolute block rounded-full bg-cyan-300/40 shadow-[0_0_12px_rgba(34,211,238,0.6)]"
-            style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `floatY ${6 + Math.random() * 10}s ease-in-out ${Math.random() * 4}s infinite`
-            }}
-          />
-        ))}
-        {/* gentle waves using gradients */}
-        <div className="absolute -bottom-24 left-0 right-0 h-64 bg-gradient-to-t from-blue-500/30 via-cyan-400/20 to-transparent blur-3xl" />
-        <div className="absolute -bottom-10 left-0 right-0 h-40 bg-gradient-to-t from-teal-400/25 via-cyan-300/10 to-transparent blur-2xl" />
+        <div className="absolute -top-24 left-1/3 w-[36rem] h-[36rem] rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute -bottom-20 right-1/3 w-[28rem] h-[28rem] rounded-full bg-blue-500/15 blur-3xl" />
       </div>
 
-      {/* Title and tagline */}
+      {/* Title, tagline, actions */}
       <div className="relative z-10 text-center px-6">
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-[0_0_25px_rgba(34,211,238,0.35)]">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white neon-text">
           AURCA SOUND
         </h1>
         <p className="mt-4 text-base md:text-xl text-white/85">
           Ultra‑luxury, glassmorphic music ecosystem — Artists, Listeners, Venues, Executives.
         </p>
-        {/* sound‑wave accent using bars (subtle) */}
-        <div className="mt-6 flex items-end justify-center gap-1 h-8 opacity-90">
-          {Array.from({ length: 28 }).map((_, i) => (
-            <span
-              key={i}
-              className="w-1 rounded-full bg-cyan-300/80 shadow-[0_0_12px_rgba(34,211,238,0.6)]"
-              style={{
-                height: `${6 + ((i * 17) % 28)}px`,
-                animation: `bar 1.8s ease-in-out ${i * 0.05}s infinite`
-              }}
-            />
-          ))}
+
+        {/* Sound wave animation behind CTA */}
+        <div className="mt-6 opacity-95">
+          <SoundWave playing={true} bars={28} height={38} />
+        </div>
+
+        <div className="mt-7 flex items-center justify-center gap-3">
+          <MagneticButton className="glass neon-edge hover-neon px-5 py-2.5">
+            Explore
+          </MagneticButton>
+          <MagneticButton className="px-5 py-2.5 rounded-xl bg-cyan-500/20 border border-cyan-200/40 hover-neon">
+            Join Platinum
+          </MagneticButton>
         </div>
       </div>
-
-      <style>{`
-        @keyframes bar { 0%, 100% { transform: scaleY(0.6); opacity: .7 } 50% { transform: scaleY(1.5); opacity: 1 } }
-        @keyframes floatY { 0%, 100% { transform: translateY(-10px); opacity: .9 } 50% { transform: translateY(10px); opacity: 1 } }
-      `}</style>
     </section>
   )
 }
