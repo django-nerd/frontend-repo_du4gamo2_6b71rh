@@ -4,6 +4,7 @@ import Navigation from './components/Navigation'
 import InvestorsTab from './components/InvestorsTab'
 import ParallaxParticles from './components/ParallaxParticles'
 import ScrollMotion from './components/ScrollMotion'
+import ArtistDashboard from './components/ArtistDashboard'
 
 function App() {
   const [active, setActive] = useState('home')
@@ -62,13 +63,19 @@ function App() {
         </>
       )}
 
+      {active === 'artists' && (
+        <div className="pb-28">
+          <ArtistDashboard />
+        </div>
+      )}
+
       {active === 'investors' && (
         <div className="pb-28">
           <InvestorsTab />
         </div>
       )}
 
-      {active !== 'home' && active !== 'investors' && (
+      {active !== 'home' && active !== 'investors' && active !== 'artists' && (
         <section className="relative mx-auto max-w-6xl px-4 md:px-6 py-16 pb-28">
           <div className="glass neon-edge p-8 text-center">
             <h2 className="text-2xl font-bold mb-2 capitalize drop-shadow neon-text">{active}</h2>
